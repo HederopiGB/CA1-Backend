@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gym Blog</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    </head>
+    <body>
+        
+        <header class="hero-block">
+            <div class="hero-text">
+                <h1><a href="/">Gym Blog</a></h1>
+                <p>A simple blog to help you and provide informations about gym</p>
+                <a href="{% url 'blog_index' %}">Here is the blog</a>
+            </div>
+            <div class="hero-img">
+                <img src="{% static 'img/img_home.jpeg' %}" alt="gym">
+            </div>
+        </header>
+        
+    </body>
+</html>
