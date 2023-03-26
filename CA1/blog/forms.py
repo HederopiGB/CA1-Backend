@@ -1,5 +1,6 @@
 from django import forms
 from django.utils import timezone
+from .models import Post, Category, Comment
 
 # Creating a form for adding comments to a blog post
 class CommentForm(forms.Form):
@@ -27,7 +28,8 @@ class CommentForm(forms.Form):
     )
     
 
-"""class AddPost(forms.Form):
+
+class AddPostForm(forms.ModelForm):
     title = forms.CharField(
         max_length=255,
         widget=forms.TextInput(attrs={
@@ -38,21 +40,16 @@ class CommentForm(forms.Form):
     body = forms.CharField(widget=forms.Textarea(
         attrs={
             "class": "form-control",
-            "placeholder": "Body"
+            "placeholder": "Content"
         })
     )
-    categories = forms.CharField(
-        max_length=20,
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Categories"
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(),
+        widget=forms.CheckboxSelectMultiple(attrs={
+            "class": "form-check-input"
         })
     )
-    created_on = forms.DateTimeField(
-        widget=forms.HiddenInput(),
-        initial=timezone.now()
-    )
-    last_modified = forms.DateTimeField(
-        widget=forms.HiddenInput(),
-        initial=timezone.now()
-    )"""
+
+    class Meta:
+        model = Post
+        fields = ['title', 'body', 'categories']
