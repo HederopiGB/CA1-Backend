@@ -1,39 +1,19 @@
 # CA1-Backend
 
-This is a simple blog web application built with Django
+Testing Methodology and Coverage Report:
 
-Description :
+Unit testing was used to test individual components of the application. The unit tests were written using the Django testing framework and covered the models, views, and forms used in the application.
 
-The app consists of three main models: Post, Category, and Comment. Post represents individual blog posts and has fields for title, body, created_on, last_modified, and a ManyToManyField relationship with Category. Category represents categories or tags that posts can be associated with, and has a single field for name. Comment represents comments made on individual posts, and has fields for author, body, created_on, and a ForeignKey relationship with Post.
-In addition to these models, there are several views defined in views.py that allow for browsing and interacting with the blog. The blog_index view displays a list of all blog posts, ordered by the created_on field. The blog_category view displays a list of blog posts associated with a particular category or tag, also ordered by created_on. The blog_detail view displays the details of a single post, including its comments and a form for adding new comments. Finally, there is a homepage view that simply displays a landing page.
-To provide administrative functionality, there are three model admins defined in admin.py for Post, Category, and Comment. These simply inherit from the base ModelAdmin class, and are registered with the Django admin site to allow for management of these models.
-Overall, this app provides a simple, functional platform for creating and managing a blog. Its use of Django's built-in admin interface makes it easy to manage posts and comments, while the custom views and templates allow for a clean, user-friendly front-end.
+For example, the tests.py file in the blog directory contained unit tests for the Category, Post, and Comment models. These tests included testing the maximum length of the name field in the Category model, the maximum length of the title field in the Post model, and ensuring that a Comment object is linked to the correct Post object via the foreign key field.
 
+Security Checks:
+To enhance the security of the web application, we have added three additional anti-hacking security checks:
 
-Features :
+XSS Prevention : The code in the 'views.py' file sanitizes the input by escaping any HTML characters that could be used to inject malicious scripts into the page. This security check was tested using manual and automated testing techniques and was found to be effective at preventing XSS attacks.
 
-The following are the key features of the application:
+Anti-CSS Attack : The code in the 'views.py' file prevents users from submitting input that contains CSS styles which could be used to alter the appearance of the page or cause other security issues. This security check was tested using manual and automated testing techniques and was found to be effective at preventing anti-CSS attacks.
 
-Users can view a list of all blog posts, sorted by date of creation.
-Users can view individual blog posts, including the post's title, content, and comments.
-Users can leave comments on blog posts, with their name and comment content.
+Redirection Attack Prevention : The code in the 'views.py' file prevents users from being redirected to an external URL specified in the 'next' parameter of a GET request. This security check was tested using manual and automated testing techniques and was found to be effective at preventing redirection attacks.
 
-Installation :
-
-To install the application, follow these steps:
-Clone the repo git.
-Install Django
-In a terminal: 
-	- Go in the folder 
-	- Type “python manage.py makemigrations”
-	- Type “python manage.py migrate”
-	-Type “python manage.py runserver”
-You will land on the homepage of the website then you can use the application and read the posts.
-
-Usage :
-
-To use the application, follow these steps:
-
-View all blog posts on the home page.
-Click on an individual blog post to view its details.
-Leave a comment on a blog post by filling out the comment form at the bottom of the post detail page.
+Conclusion:
+By using manual testing techniques, we have ensured the quality and correctness of the web application. Our manual testing has covered various scenarios and edge cases. We have also enhanced the security of the web application by adding three additional anti-hacking security checks.
